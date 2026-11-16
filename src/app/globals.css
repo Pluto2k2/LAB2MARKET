@@ -1,0 +1,136 @@
+@import "tailwindcss";
+@import "@fontsource/dm-sans/400.css";
+@import "@fontsource/dm-sans/500.css";
+@import "@fontsource/dm-sans/600.css";
+@import "@fontsource/dm-sans/700.css";
+@import "@fontsource/fraunces/500.css";
+@import "@fontsource/fraunces/600.css";
+@import "@fontsource/fraunces/700.css";
+@import "@fontsource/encode-sans-semi-expanded/600.css";
+
+/* Palette (6 brand colours):
+   ink #0C1618, teal #004643, cream #FAF4D3, night #0B132B, navy #1C2541, slate #3A506B
+   Tints are mixes of these colours. "midnight" and "mint" are the deep navy and the light teal
+   accent of the approved homepage concept (sampled from its artwork so illustrations blend in). */
+@theme {
+  --color-ink: #0c1618;
+  --color-teal: #004643;
+  --color-cream: #faf4d3;
+  --color-night: #0b132b;
+  --color-navy: #1c2541;
+  --color-slate: #3a506b;
+
+  --color-midnight: #0e2238;
+  --color-mint: #6cc4ae;
+  --color-sage: #e4efdc;
+  --color-page: #fbf8e6;
+  --color-ivory: #fffcf1;
+  --color-paper: color-mix(in srgb, #faf4d3 30%, #ffffff);
+  --color-line: #e6dfc4;
+  --color-teal-soft: color-mix(in srgb, #004643 12%, #faf4d3);
+  --color-slate-soft: color-mix(in srgb, #3a506b 12%, #faf4d3);
+  --color-navy-soft: color-mix(in srgb, #1c2541 10%, #faf4d3);
+
+  --font-sans: "DM Sans", ui-sans-serif, system-ui, sans-serif;
+  --font-display: "Fraunces", Georgia, serif;
+  --font-eyebrow: "Encode Sans Semi Expanded", ui-sans-serif, system-ui, sans-serif;
+}
+
+html {
+  background: var(--color-page);
+  color: var(--color-ink);
+}
+
+body {
+  font-family: var(--font-sans);
+  overflow-x: clip;
+  -webkit-font-smoothing: antialiased;
+}
+
+@layer base {
+  h1,
+  h2,
+  h3 {
+    text-wrap: balance;
+  }
+}
+
+.font-display {
+  letter-spacing: -0.015em;
+}
+
+/* A 1px rule that runs the full width of the viewport from inside a centred container. */
+.rule-bleed-top,
+.rule-bleed-bottom {
+  /* full-viewport hairlines; border-image outset is ink overflow only, so no horizontal scroll */
+  border-style: solid;
+  border-width: 0;
+  border-image-source: linear-gradient(var(--color-line), var(--color-line));
+  border-image-slice: 1;
+  border-image-outset: 0 100vw;
+}
+.rule-bleed-top {
+  border-top-width: 1px;
+}
+.rule-bleed-bottom {
+  border-bottom-width: 1px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    transition: none !important;
+    animation: none !important;
+  }
+}
+
+:focus-visible {
+  outline: 3px solid var(--color-teal);
+  outline-offset: 2px;
+  border-radius: 4px;
+}
+
+@utility btn {
+    @apply inline-flex items-center justify-center gap-2 rounded-full px-5 py-2.5 text-sm font-semibold transition-colors disabled:cursor-not-allowed disabled:opacity-50;
+  }
+
+@utility btn-primary {
+    @apply btn bg-teal text-cream hover:bg-navy;
+  }
+
+@utility btn-secondary {
+    @apply btn border border-slate/40 bg-paper text-navy hover:border-navy;
+  }
+
+@utility btn-sm {
+    @apply px-3.5 py-1.5 text-xs;
+  }
+
+@utility card {
+    @apply rounded-2xl border border-line bg-paper p-6;
+  }
+
+@utility label {
+    @apply mb-1.5 block text-sm font-medium text-navy;
+  }
+
+@utility input {
+    @apply w-full rounded-lg border border-line bg-paper px-3 py-2.5 text-sm text-ink placeholder:text-slate/60 focus:border-teal focus:outline-none focus:ring-2 focus:ring-teal/20;
+  }
+
+@utility hint {
+    @apply mt-1 text-xs text-slate;
+  }
+
+@utility eyebrow {
+    @apply text-xs font-semibold uppercase tracking-[0.14em] text-teal;
+  }
+
+@utility pill {
+    @apply inline-flex items-center whitespace-nowrap rounded-full px-2.5 py-0.5 text-xs font-semibold;
+  }
+
+@utility link {
+    @apply font-medium text-teal underline underline-offset-2 hover:text-navy;
+  }
