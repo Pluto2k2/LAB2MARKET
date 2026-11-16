@@ -5,6 +5,7 @@ import { getCurrentUser } from "@/lib/session";
 import { logout } from "./auth-actions";
 import { Wordmark } from "@/components/logo";
 import { NavLink } from "@/components/nav-link";
+import { Analytics } from "@vercel/analytics/next";
 
 export const metadata: Metadata = {
   title: { default: "Lab2Market STEM", template: "%s | Lab2Market STEM" },
@@ -80,6 +81,7 @@ export default async function RootLayout({ children }: { children: React.ReactNo
             Lab2Market STEM. Guidance only, not legal or financial advice. Patent data: EPO Open Patent Services.
           </div>
         </footer>
+        <Analytics />
       </body>
     </html>
   );
