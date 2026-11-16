@@ -84,13 +84,13 @@ export default async function Home() {
         </div>
         <div className="flex justify-center md:justify-end">
           <Image
-            src="/illustrations/hero-lab-to-market.png"
-            alt="Illustration: a path on a dark screen from a laboratory flask, to a research document, to an industry building, with the note “Better research. Bigger impact.”"
-            width={445}
-            height={410}
+            src="/illustrations/hero-women-in-stem.webp"
+            alt="Illustration: a woman scientist in a lab coat looks ahead, with lab equipment on one side and a city skyline with a wind turbine on the other."
+            width={1200}
+            height={854}
             priority
             unoptimized
-            className="h-auto w-full max-w-[480px] md:-mr-2 xl:max-w-[570px]"
+            className="h-auto w-full max-w-[520px] md:-mr-2 xl:max-w-[640px]"
           />
         </div>
       </section>
