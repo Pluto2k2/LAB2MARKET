@@ -1,4 +1,5 @@
 import { describe, expect, it } from "vitest";
+import { computeTrl } from "@/lib/trl";
 import { evaluateHypothesis, tallyPains, type VerdictKind } from "../src/lib/validation";
 import { matchProjectToChallenge } from "../src/lib/matching";
 import { buildCql } from "../src/lib/ops/query";
@@ -166,5 +167,18 @@ describe("text", () => {
   });
   it("parses keywords", () => {
     expect(parseKeywords(" Biocontrol , biocontrol, Wheat  fungi ,,")).toEqual(["biocontrol", "wheat fungi"]);
+  });
+});
+
+describe("computeTrl (TRL ladder)", () => {
+  it("counts consecutive done steps and flags later done steps as gaps", () => {
+    const r = computeTrl(["done", "done", "done", "done", "wip", "no", "done", "no", "no"]);
+    expect(r.trl).toBe(4);
+    expect(r.working).toBe(true);
+    expect(r.gaps).toEqual([6]);
+  });
+  it("returns 0 when step 1 is not done and 9 when all are", () => {
+    expect(computeTrl(Array(9).fill("no")).trl).toBe(0);
+    expect(computeTrl(Array(9).fill("done")).trl).toBe(9);
   });
 });

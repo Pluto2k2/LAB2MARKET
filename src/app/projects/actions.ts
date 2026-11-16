@@ -16,7 +16,7 @@ const projectSchema = z.object({
   field: z.enum(FIELDS, { message: "Choose a field." }),
   summary: z.string().min(20, "Describe the project in at least 20 characters.").max(1500),
   keywords: z.array(z.string()).min(1, "Add at least one keyword."),
-  trl: z.coerce.number().int().min(1, "TRL is between 1 and 9.").max(9, "TRL is between 1 and 9."),
+  trl: z.coerce.number().int().min(1, "Mark at least step 1 of the TRL ladder as done.").max(9, "TRL is between 1 and 9."),
 });
 
 function readProject(fd: FormData) {
